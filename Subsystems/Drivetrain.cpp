@@ -12,7 +12,7 @@ Drivetrain::Drivetrain() : Subsystem("ExampleSubsystem")
 
 void Drivetrain::InitDefaultCommand()
 {
-	SetDefaultCommand(new GetYPosition);
+	SetDefaultCommand(new TankDrive);
 	// Set the default command for a subsystem here.
 	//SetDefaultCommand(new MySpecialCommand());
 }
