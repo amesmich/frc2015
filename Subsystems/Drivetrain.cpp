@@ -7,7 +7,7 @@ Drivetrain::Drivetrain() : Subsystem("ExampleSubsystem")
   leftBackMotor = new CANTalon(3), rightBackMotor = new CANTalon(4),
     leftFrontMotor = new CANTalon(1), rightFrontMotor = new CANTalon(2);
 
-	drive = new RobotDrive;
+  drive = new RobotDrive;
 }
 
 void Drivetrain::InitDefaultCommand()
