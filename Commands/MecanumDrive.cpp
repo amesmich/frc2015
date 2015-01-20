@@ -15,8 +15,8 @@ void MecanumDrive::Execute()
 {
 	// Get joystick axis values to drive using mecanum drive controls
 	drivetrain->mecanum_drive(oi->joystick->GetRawAxis(0),			// Left stick's X-axis
-							  oi->joystick->GetRawAxis(1),			// Left stick's Y-axis
-							  oi->joystick->GetRawAxis(4));			// Right stick's X-axis
+	                          oi->joystick->GetRawAxis(1),			// Left stick's Y-axis
+	                          oi->joystick->GetRawAxis(4));			// Right stick's X-axis
 }
 
 // Make this return true when this Command no longer needs to run execute()
