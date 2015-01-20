@@ -1,10 +1,6 @@
 #include "OI.h"
-#include "RobotMap.h"
 
 OI::OI()
 {
-	leftJoystick = new Joystick (1);
-	rightJoystick = new Joystick (5);
-
-	// Process operator interface input here.
+	joystick = new Joystick (1);	// Controller connected to port 1 on the driver station
 }

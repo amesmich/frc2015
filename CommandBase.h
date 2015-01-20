@@ -21,8 +21,8 @@ public:
 	static void init();
 	// Create a single static instance of all of your subsystems
 	static ExampleSubsystem *examplesubsystem;
-	static Drivetrain *drivetrain;
 	static OI *oi;
+	static Drivetrain *drivetrain;
 };
 
 #endif

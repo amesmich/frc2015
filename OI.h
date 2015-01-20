@@ -8,9 +8,9 @@ class OI
 private:
 
 public:
-	Joystick *leftJoystick;
-	Joystick *rightJoystick;
 	OI();
+
+	Joystick *joystick;		// The controller for the robot
 };
 
 #endif

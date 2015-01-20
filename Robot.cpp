@@ -1,19 +1,20 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "Commands/ExampleCommand.h"
+#include "Commands/MecanumDrive.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
 {
 private:
-	Command *autonomousCommand, *tankDrive;
+	Command *autonomousCommand, *mecanum_drive;
 	LiveWindow *lw;
 
 	void RobotInit()
 	{
 		CommandBase::init();
-		//autonomousCommand = new ExampleCommand();
-		tankDrive = new TankDrive();
+		autonomousCommand = new ExampleCommand();
+		mecanum_drive = new MecanumDrive();
 		lw = LiveWindow::GetInstance();
 	}
 	
@@ -24,8 +25,8 @@ private:
 
 	void AutonomousInit()
 	{
-		//if (autonomousCommand != NULL)
-			//autonomousCommand->Start();
+		if (autonomousCommand != NULL)
+			autonomousCommand->Start();
 	}
 
 	void AutonomousPeriodic()
@@ -41,8 +42,8 @@ private:
 		// this line or comment it out.
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
-		tankDrive->Start();
 
+		mecanum_drive->Start();
 	}
 
 	void TeleopPeriodic()
