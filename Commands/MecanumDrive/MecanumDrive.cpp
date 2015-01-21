@@ -8,7 +8,10 @@ MecanumDrive::MecanumDrive()
 }
 
 // Called just before this Command runs the first time
-void MecanumDrive::Initialize(){}
+void MecanumDrive::Initialize()
+{
+
+}
 
 // Called repeatedly when this Command is scheduled to run
 void MecanumDrive::Execute()
