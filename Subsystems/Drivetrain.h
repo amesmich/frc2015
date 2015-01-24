@@ -2,6 +2,7 @@
 #define Drivetrain_H
 
 #include "Commands/Subsystem.h"
+#include "RobotMap.h"
 #include "WPILib.h"
 
 class Drivetrain: public Subsystem
@@ -14,7 +15,6 @@ private:
 
 	RobotDrive *drive;			// Create a RobotDrive to use its mecanum drive features
 
-	float max_speed;			// The maximum speed the motors can be at
 	bool is_default_mode;		// boolean to check the driving perspective
 
 public:

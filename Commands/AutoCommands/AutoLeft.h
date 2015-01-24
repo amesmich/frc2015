@@ -1,14 +1,14 @@
-#ifndef AutoBackward_H
-#define AutoBackward_H
+#ifndef AutoLeft_H
+#define AutoLeft_H
 
-#include "../../CommandBase.h"
+#include "../CommandBase.h"
 #include "RobotMap.h"
 #include "WPILib.h"
 
-class AutoBackward: public CommandBase
+class AutoLeft: public CommandBase
 {
 public:
-	AutoBackward();
+	AutoLeft();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -13,12 +13,15 @@ AutoBackward::AutoBackward()
 }
 
 // Called just before this Command runs the first time
-void AutoBackward::Initialize(){}
+void AutoBackward::Initialize()
+{
+
+}
 
 // Called repeatedly when this Command is scheduled to run
 void AutoBackward::Execute()
 {
-	drivetrain->mecanum_drive(0.0, -0.25, 0.0);
+	drivetrain->mecanum_drive(0.0, SLOW_SPEED, 0.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()

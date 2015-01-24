@@ -6,9 +6,6 @@
 
 class SwitchDriveMode: public CommandBase
 {
-private:
-	Timer *timer;
-
 public:
 	SwitchDriveMode();
 	void Initialize();

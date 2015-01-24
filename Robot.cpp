@@ -24,6 +24,7 @@ private:
 		chooser = new SendableChooser();
 		chooser->AddDefault("Test 1 Auto Mode", new AutoTest());
 		chooser->AddObject("Test 2 Auto mode", new AutoTest2());
+		SmartDashboard::PutData("Auto Modes", chooser);
 	}
 	
 	void DisabledPeriodic()
@@ -34,7 +35,10 @@ private:
 	void AutonomousInit()
 	{
 		if (auto_command != NULL)
+		{
+			auto_command = (Command *) chooser->GetSelected();
 			auto_command->Start();
+		}
 	}
 
 
@@ -42,6 +46,9 @@ private:
 	{
 		Scheduler::GetInstance()->Run();
 	}
+
+
+
 
 	void TeleopInit()
 	{
@@ -58,21 +65,12 @@ private:
 	void TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
+		CommandBase::drivetrain->update_status();
 	}
 
 	void TestPeriodic()
 	{
 		lw->Run();
-	}
-
-	/*
-	 * This function will call the SmartDashboard functions
-	 * that are responsible for diagnostic informaiton
-	 */
-
-	void UpdateStaus()
-	{
-		CommandBase::drivetrain->update_status();
 	}
 };
 

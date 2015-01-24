@@ -15,6 +15,16 @@
 //const int LEFTMOTOR = 1;
 //const int RIGHTMOTOR = 2;
 
+//Drivetrain Constants
+const float SLOW_SPEED = 0.25;  //Speed for slow-moving autonomous commands
+const float MID_SPEED = 0.50;   //Speed for moderately-moving autonomous commands
+const float HIGH_SPEED = 0.75;  //Speed for fast-moving autonomous commands
+const float MAX_SPEED = 0.50;   //Speed limit multiplier for motors
+
+//OI Constants
+const int DRIVER_CONTROLLER_PORT = 1;
+
+const int A_BUTTON = 1;
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
 //const int RANGE_FINDER_PORT = 1;

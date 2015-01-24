@@ -11,9 +11,9 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 	back_right = new CANTalon(4);
 
 	drive = new RobotDrive(front_left, back_left, front_right, back_right);
+	drive->SetSafetyEnabled(false);	// Disable motor safety to avoid crashes
 
-	max_speed = 0.5;				// Set the default max speed to 0.5
-	is_default_mode = true;		// By default the driver's perspective should be in the front
+	is_default_mode = true;			// By default the driver's perspective should be in the front
 }
 
 void Drivetrain::InitDefaultCommand()
@@ -61,7 +61,7 @@ void Drivetrain::mecanum_drive(float x, float y, float rotation)
 
 	// Assign a max speed for each of the motors
 	// The max speed is set to 0.5 as default
-	drive->SetMaxOutput(max_speed);
+	drive->SetMaxOutput(MAX_SPEED);
 
 	// Provide the values needed to by the mecanum drive function
 	drive->MecanumDrive_Cartesian(x, y, rotation);
@@ -110,8 +110,8 @@ void Drivetrain::update_status()
 
 	// Gets the voltage of all the motors
 	SmartDashboard::PutNumber("Voltage of the Front Left Motor", front_left->GetOutputVoltage());
-	SmartDashboard::PutNumber("Voltage of the Front Left Motor", front_left->GetOutputVoltage());
-	SmartDashboard::PutNumber("Voltage of the Front Left Motor", front_left->GetOutputVoltage());
-	SmartDashboard::PutNumber("Voltage of the Front Left Motor", front_left->GetOutputVoltage());
+	SmartDashboard::PutNumber("Voltage of the Front Right Motor", front_right->GetOutputVoltage());
+	SmartDashboard::PutNumber("Voltage of the Back Left Motor", back_left->GetOutputVoltage());
+	SmartDashboard::PutNumber("Voltage of the Back Right Motor", back_right->GetOutputVoltage());
 }
 
