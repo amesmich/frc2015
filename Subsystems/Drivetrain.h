@@ -15,11 +15,19 @@ private:
 	RobotDrive *drive;			// Create a RobotDrive to use its mecanum drive features
 
 	float max_speed;			// The maximum speed the motors can be at
+	bool is_default_mode;		// boolean to check the driving perspective
 
 public:
 	Drivetrain();
 	void InitDefaultCommand();
 	void mecanum_drive(float x, float y, float rotation);
+
+	void switch_drive_mode();
+	void set_drive_mode_default();
+
+	bool get_drive_mode();
+
+	void update_status();
 };
 
 #endif

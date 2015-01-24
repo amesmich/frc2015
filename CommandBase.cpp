@@ -2,6 +2,7 @@
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Drivetrain.h"
 #include "Commands/Scheduler.h"
+#include "WPILib.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 ExampleSubsystem* CommandBase::examplesubsystem = NULL;
@@ -26,4 +27,7 @@ void CommandBase::init()
 	examplesubsystem = new ExampleSubsystem();
 	drivetrain = new Drivetrain ();
 	oi = new OI();
+
+	SmartDashboard::init();
+	SmartDashboard::PutBoolean("Default drive mode", drivetrain->get_drive_mode());
 }
