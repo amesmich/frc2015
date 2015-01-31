@@ -5,10 +5,10 @@
 Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 {
 	// Create the talon devices using can device id's as parameter
-	front_left = new CANTalon(1);
-	front_right = new CANTalon(2);
-	back_left = new CANTalon(3);
-	back_right = new CANTalon(4);
+	front_left = new CANTalon(FRONT_LEFT_MOTOR);
+	front_right = new CANTalon(FRONT_RIGHT_MOTOR);
+	back_left = new CANTalon(BACK_LEFT_MOTOR);
+	back_right = new CANTalon(BACK_RIGHT_MOTOR);
 
 	drive = new RobotDrive(front_left, back_left, front_right, back_right);
 	drive->SetSafetyEnabled(false);	// Disable motor safety to avoid crashes
