@@ -57,7 +57,9 @@ const int START_BUTTON = 8;         //Start Button (in middle of controller)
 //ActiveGrabber Constants
 const int LEFT_GRABBER_MOTOR = 21;    //Left motor of ActiveGrabber
 const int RIGHT_GRABBER_MOTOR = 22;   //Right motor of ActiveGrabber
-
+const int MAX_SPEED_CONSTANT = 0.25;  //Multiplier constant for ActiveGrabber speed
+const int GRAB_SPEED = 0.20;          //TODO Find a good speed at which to grab the tote.
+const int STALL_SPEED = 0.05;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:

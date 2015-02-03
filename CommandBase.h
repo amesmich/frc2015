@@ -5,6 +5,7 @@
 #include "Commands/Command.h"
 #include "Subsystems/ExampleSubsystem.h"
 #include "Subsystems/Drivetrain.h"
+#include "Subsystems/ActiveGrabber.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -23,6 +24,7 @@ public:
 	static ExampleSubsystem *examplesubsystem;
 	static OI *oi;
 	static Drivetrain *drivetrain;
+	static ActiveGrabber *active_grabber;
 };
 
 #endif

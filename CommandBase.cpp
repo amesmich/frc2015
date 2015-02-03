@@ -27,6 +27,7 @@ void CommandBase::init()
 	examplesubsystem = new ExampleSubsystem();
 	drivetrain = new Drivetrain ();
 	oi = new OI();
+	active_grabber = new ActiveGrabber();
 
 	SmartDashboard::init();
 	SmartDashboard::PutBoolean("Default drive mode", drivetrain->get_drive_mode());

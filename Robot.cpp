@@ -1,5 +1,4 @@
 #include "WPILib.h"
-#include "Commands/Command.h"
 #include "Commands/ExampleCommand.h"
 #include "Commands/MecanumDrive.h"
 #include "Commands/AutoRun/AutoTest.h"
@@ -9,7 +8,7 @@
 class Robot: public IterativeRobot
 {
 private:
-	Command *auto_command, *mecanum_drive;
+	Command *auto_command, *mecanum_drive, *active_grabber;
 	LiveWindow *lw;
 	SendableChooser *chooser;
 
@@ -20,7 +19,7 @@ private:
 		auto_command = new AutoTest ();			// The command to move forward and backward
 		mecanum_drive = new MecanumDrive();		// The command to control to mecanum wheels
 		lw = LiveWindow::GetInstance();
-
+		active_grabber = new ActiveGrabber();
 		chooser = new SendableChooser();
 		chooser->AddDefault("Test 1 Auto Mode", new AutoTest());
 		chooser->AddObject("Test 2 Auto mode", new AutoTest2());
