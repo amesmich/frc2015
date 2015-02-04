@@ -7,8 +7,15 @@ ActiveGrabber::ActiveGrabber() : Subsystem("ExampleSubsystem")
   //Create the talon controllers with the device IDs
   left_grabber = new CANTalon(LEFT_GRABBER_MOTOR);
   right_grabber = new CANTalon(RIGHT_GRABBER_MOTOR);
-  right_grabber->SetSensorDirection(true);  //TODO find which motor ought to be reversed
+  left_grabber->SetControlMode(CANSpeedController::kFollower);
+  left_grabber->Set(RIGHT_GRABBER_MOTOR);
+  left_grabber->SetSensorDirection(true);
+
 }
+
+//Right motor: CW to move outwards, CCW to move inwards of the robot
+//Left motor: CCW to move outwards, CW to move inwards of the robot
+//CW is a + value, CCW is a - value
 
 void ActiveGrabber::InitDefaultCommand()
 {
@@ -17,19 +24,16 @@ void ActiveGrabber::InitDefaultCommand()
 
 void ActiveGrabber::spin_motors_in()
 {
-  left_grabber->Set(MAX_SPEED * GRAB_SPEED);
   right_grabber->Set(MAX_SPEED * GRAB_SPEED);
 }
 
 void ActiveGrabber::spin_motors_out()
 {
-  left_grabber->Set(MAX_SPEED * -GRAB_SPEED);
   right_grabber->Set(MAX_SPEED * -GRAB_SPEED);
 }
 
 void ActiveGrabber::stall_motors()
 {
-  left_grabber->Set(MAX_SPEED * STALL_SPEED);
   right_grabber->Set(MAX_SPEED * STALL_SPEED);
 }
 

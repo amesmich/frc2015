@@ -13,6 +13,7 @@ public:
 
 	Joystick *joystick;		// The controller for the robot
 	JoystickButton *a_button;	// The 'A' button on the controller
+	JoystickButton *y_button; // The 'Y' button on the controller
 };
 
 #endif
