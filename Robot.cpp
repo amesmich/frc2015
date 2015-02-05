@@ -3,6 +3,7 @@
 #include "Commands/MecanumDrive.h"
 #include "Commands/AutoRun/AutoTest.h"
 #include "Commands/AutoRun/AutoTest2.h"
+#include "Commands/GrabTote.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -19,7 +20,7 @@ private:
 		auto_command = new AutoTest ();			// The command to move forward and backward
 		mecanum_drive = new MecanumDrive();		// The command to control to mecanum wheels
 		lw = LiveWindow::GetInstance();
-		active_grabber = new ActiveGrabber();
+		active_grabber = new GrabTote();
 		chooser = new SendableChooser();
 		chooser->AddDefault("Test 1 Auto Mode", new AutoTest());
 		chooser->AddObject("Test 2 Auto mode", new AutoTest2());

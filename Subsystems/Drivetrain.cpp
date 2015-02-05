@@ -1,6 +1,6 @@
 #include "Drivetrain.h"
 #include "Commands/MecanumDrive.h"
-#include "../RobotMap.h"
+#include "RobotMap.h"
 
 Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 {

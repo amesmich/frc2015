@@ -1,7 +1,7 @@
 #ifndef AutoBackward_H
 #define AutoBackward_H
 
-#include "../../CommandBase.h"
+#include "CommandBase.h"
 #include "RobotMap.h"
 #include "WPILib.h"
 

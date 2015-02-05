@@ -1,7 +1,7 @@
 #ifndef GrabTote_H
 #define GrabTote_H
 
-#include "../CommandBase.h"
+#include "CommandBase.h"
 #include "WPILib.h"
 
 class GrabTote: public CommandBase

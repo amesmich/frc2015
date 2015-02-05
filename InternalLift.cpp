@@ -1,5 +1,5 @@
 #include "InternalLift.h"
-#include "../RobotMap.h"
+#include "RobotMap.h"
 
 InternalLift::InternalLift() : Subsystem("Internal Lift")
 {

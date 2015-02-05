@@ -1,5 +1,5 @@
 #include "ActiveGrabber.h"
-#include "../RobotMap.h"
+#include "RobotMap.h"
 
 
 ActiveGrabber::ActiveGrabber() : Subsystem("ExampleSubsystem")

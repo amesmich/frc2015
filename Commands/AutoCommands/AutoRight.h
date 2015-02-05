@@ -1,7 +1,7 @@
 #ifndef AutoRight_H
 #define AutoRight_H
 
-#include "../CommandBase.h"
+#include "CommandBase.h"
 #include "RobotMap.h"
 #include "WPILib.h"
 
