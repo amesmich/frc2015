@@ -1,6 +1,6 @@
 #include "AutoTest2.h"
-#include "../AutoCommands/AutoForward.h"
-#include "../AutoCommands/AutoBackward.h"
+#include "Commands/AutoCommands/AutoForward.h"
+#include "Commands/AutoCommands/AutoBackward.h"
 
 AutoTest2::AutoTest2()
 {
