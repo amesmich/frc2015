@@ -1,11 +1,7 @@
-#include "AutoBackward.h"
+#include "AutoRotateRight.h"
 #include "RobotMap.h"
 
-/*
- * Auto test command to move backwards
- */
-
-AutoBackward::AutoBackward()
+AutoRotateRight::AutoRotateRight()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
@@ -14,29 +10,29 @@ AutoBackward::AutoBackward()
 }
 
 // Called just before this Command runs the first time
-void AutoBackward::Initialize(){}
+void AutoRotateRight::Initialize(){}
 
 // Called repeatedly when this Command is scheduled to run
-void AutoBackward::Execute()
+void AutoRotateRight::Execute()
 {
-	drivetrain->mecanum_drive(0.0, SLOW_SPEED, 0.0);
+	drivetrain->mecanum_drive(0.0, 0.0, SLOW_SPEED);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool AutoBackward::IsFinished()
+bool AutoRotateRight::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void AutoBackward::End()
+void AutoRotateRight::End()
 {
 	drivetrain->mecanum_drive(0.0, 0.0, 0.0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void AutoBackward::Interrupted()
+void AutoRotateRight::Interrupted()
 {
 	drivetrain->mecanum_drive(0.0, 0.0, 0.0);
 }

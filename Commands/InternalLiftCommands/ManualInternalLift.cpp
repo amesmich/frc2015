@@ -1,42 +1,38 @@
-#include "AutoBackward.h"
-#include "RobotMap.h"
+#include "ManualInternalLift.h"
+#include "Subsystems/InternalLift.h"
 
-/*
- * Auto test command to move backwards
- */
-
-AutoBackward::AutoBackward()
+ManualInternalLift::ManualInternalLift()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 
-	Requires (drivetrain);
+	Requires (internal_lift);
 }
 
 // Called just before this Command runs the first time
-void AutoBackward::Initialize(){}
+void ManualInternalLift::Initialize(){}
 
 // Called repeatedly when this Command is scheduled to run
-void AutoBackward::Execute()
+void ManualInternalLift::Execute()
 {
-	drivetrain->mecanum_drive(0.0, SLOW_SPEED, 0.0);
+	internal_lift->move_lift(oi->x_button, oi->b_button);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool AutoBackward::IsFinished()
+bool ManualInternalLift::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void AutoBackward::End()
+void ManualInternalLift::End()
 {
-	drivetrain->mecanum_drive(0.0, 0.0, 0.0);
+	internal_lift->stop_lift();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void AutoBackward::Interrupted()
+void ManualInternalLift::Interrupted()
 {
-	drivetrain->mecanum_drive(0.0, 0.0, 0.0);
+	internal_lift->stop_lift();
 }

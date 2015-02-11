@@ -1,18 +1,25 @@
 #include "Drivetrain.h"
 #include "Commands/MecanumDrive.h"
-#include "RobotMap.h"
+#include "../RobotMap.h"
+
+/*
+ * Author: Mehdi Moaddeb
+ */
 
 Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 {
 	// Create the talon devices using can device id's as parameter
-	front_left = new CANTalon(FRONT_LEFT_MOTOR);
-	front_right = new CANTalon(FRONT_RIGHT_MOTOR);
-	back_left = new CANTalon(BACK_LEFT_MOTOR);
-	back_right = new CANTalon(BACK_RIGHT_MOTOR);
+	front_left = new CANTalon(1);
+	front_right = new CANTalon(2);
+	back_left = new CANTalon(3);
+	back_right = new CANTalon(4);
 
 	drive = new RobotDrive(front_left, back_left, front_right, back_right);
-	drive->SetSafetyEnabled(false);	// Disable motor safety to avoid crashes
+	drive->SetSafetyEnabled(false);	// Disable motor safety helper to avoid crashes
 
+	gyro = new Gyro (5);			//place the gyro on a channel TODO
+
+	max_speed = 0.5;				// Set the default max speed to 0.5
 	is_default_mode = true;			// By default the driver's perspective should be in the front
 }
 
@@ -20,6 +27,36 @@ void Drivetrain::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
 	SetDefaultCommand (new MecanumDrive());
+}
+
+
+void Drivetrain::inti_gyro()
+{
+	// sets the sensitivity  of the gyro to 7 mV/°/s
+	gyro->SetSensitivity(0.007);
+
+	// initialize the position of the gyro
+	gyro->InitGyro();
+}
+
+void Drivetrain::header()
+{
+	/*
+	 * Keeps Gyro within 360 degrees and displays header
+	 * sets Gyro to 0 degrees when it reaches 360
+	 * Returns the Current Angle, Rate of Rotation, and Temperature of the Gyro
+	 */
+
+	if (gyro->GetAngle() >= 360)
+	{
+		gyro->Reset();
+	}
+	else
+	{
+		//Displays header
+		SmartDashboard::PutNumber("Current angle of the Gyro", gyro->GetAngle());
+		SmartDashboard::PutNumber("Rate of rotation of the Gyro", gyro->GetRate());
+	}
 }
 
 /*
@@ -36,8 +73,13 @@ void Drivetrain::InitDefaultCommand()
 
 void Drivetrain::mecanum_drive(float x, float y, float rotation)
 {
-	// If the robot is in default drive mode use this driver perspective
-	// Otherwise switch the front of the robot to the other side
+	// Assign a max speed for each of the motors
+	// The max speed is set to 0.5 as default
+	drive->SetMaxOutput(max_speed);
+
+	// If the robot is in default drive mode use this driver perspective,
+	// otherwise switch the front of the robot to the other side.
+	// The driver perspective is switched by pressing 'A' on the controller
 	if(this->is_default_mode)
 	{
 		// do not invert the direction of the left side wheels by default
@@ -47,6 +89,14 @@ void Drivetrain::mecanum_drive(float x, float y, float rotation)
 		// Invert the right side wheels to allow for proper movement with mecanum wheels
 		drive->SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
 		drive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);
+
+		// The for loop ramps the speed from a proportion of the actual value
+		// upto the actual value
+		for (int rate = RAMP_RATE; rate > 0; rate--)
+		{
+			// Provide the values needed to by the mecanum drive function
+			drive->MecanumDrive_Cartesian(x / rate, y / rate, rotation / rate);
+		}
 	}
 	else
 	{
@@ -57,16 +107,24 @@ void Drivetrain::mecanum_drive(float x, float y, float rotation)
 		// Return the inverted motors to their default
 		drive->SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
 		drive->SetInvertedMotor(RobotDrive::kRearRightMotor, false);
+
+		// Provide the values needed to by the mecanum drive function
+		// invert the rotation to adjust for the change in perspective
+
+		// The for loop ramps the speed from a proportion of the actual value
+		// upto the actual value
+		for (int rate = RAMP_RATE; rate > 0; rate--)
+		{
+			drive->MecanumDrive_Cartesian(x / rate, y / rate, -1 * rotation / rate);
+		}
 	}
-
-	// Assign a max speed for each of the motors
-	// The max speed is set to 0.5 as default
-	drive->SetMaxOutput(MAX_SPEED);
-
-	// Provide the values needed to by the mecanum drive function
-	drive->MecanumDrive_Cartesian(x, y, rotation);
 }
 
+/*
+ * Switch the drive mode of the robot to the opposite
+ * of its current drive state. This function will be
+ * used when the 'A' button on the controller is pressed
+ */
 
 void Drivetrain::switch_drive_mode()
 {
@@ -102,16 +160,34 @@ bool Drivetrain::get_drive_mode()
 
 void Drivetrain::update_status()
 {
-	// Gets the temperature of all of the motors
+	// Show the current drive mode of the robot
+	// If it is in default mode display default,
+	// otherwise display alternate as the mode.
+	if (this->get_drive_mode())
+	{
+		SmartDashboard::PutString("Drive mode", "Default");
+	}
+	else
+	{
+		SmartDashboard::PutString("Drive mode", "Alternate");
+	}
+
+	// Gets the temperature of all of the motors and displays them on the smart dashboard
 	SmartDashboard::PutNumber("Temperature of the Front Left Motor", front_left->GetTemperature());
 	SmartDashboard::PutNumber("Temperature of the Front Right Motor", front_right->GetTemperature());
 	SmartDashboard::PutNumber("Temperature of the Back Left Motor", back_left->GetTemperature());
 	SmartDashboard::PutNumber("Temperature of the Back Right Motor", back_right->GetTemperature());
 
-	// Gets the voltage of all the motors
+	// Gets the voltage of all the motors and displays them on the smart dashboard
 	SmartDashboard::PutNumber("Voltage of the Front Left Motor", front_left->GetOutputVoltage());
 	SmartDashboard::PutNumber("Voltage of the Front Right Motor", front_right->GetOutputVoltage());
 	SmartDashboard::PutNumber("Voltage of the Back Left Motor", back_left->GetOutputVoltage());
 	SmartDashboard::PutNumber("Voltage of the Back Right Motor", back_right->GetOutputVoltage());
+
+	// Gets the current of all the motors and displays them on the smart dashboard
+	SmartDashboard::PutNumber("Current of the Front Left Motor", front_left->GetOutputCurrent());
+	SmartDashboard::PutNumber("Current of the Front Right Motor", front_right->GetOutputCurrent());
+	SmartDashboard::PutNumber("Current of the Back Left Motor", back_left->GetOutputCurrent());
+	SmartDashboard::PutNumber("Current of the Back Right Motor", back_right->GetOutputCurrent());
 }
 

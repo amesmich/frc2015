@@ -1,8 +1,7 @@
 #ifndef AutoForward_H
 #define AutoForward_H
 
-#include "CommandBase.h"
-#include "RobotMap.h"
+#include "../../CommandBase.h"
 #include "WPILib.h"
 
 class AutoForward: public CommandBase

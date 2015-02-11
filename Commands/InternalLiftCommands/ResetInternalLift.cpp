@@ -1,33 +1,32 @@
-#include "SwitchDriveMode.h"
-#include "Subsystems/Drivetrain.h"
+#include "ResetInternalLift.h"
+#include "Subsystems/InternalLift.h"
 
-SwitchDriveMode::SwitchDriveMode()
+ResetInternalLift::ResetInternalLift()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
-	Requires (drivetrain);
+
+	Requires (internal_lift);
 }
 
 // Called just before this Command runs the first time
-void SwitchDriveMode::Initialize()
+void ResetInternalLift::Initialize()
 {
-	// Switch the driver's perspective when this command is called
-	drivetrain->switch_drive_mode();
+	internal_lift->calibrate();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void SwitchDriveMode::Execute(){}
+void ResetInternalLift::Execute(){}
 
 // Make this return true when this Command no longer needs to run execute()
-bool SwitchDriveMode::IsFinished()
+bool ResetInternalLift::IsFinished()
 {
-	// end once the button is pressed once
 	return true;
 }
 
 // Called once after isFinished returns true
-void SwitchDriveMode::End(){}
+void ResetInternalLift::End(){}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void SwitchDriveMode::Interrupted(){}
+void ResetInternalLift::Interrupted(){}

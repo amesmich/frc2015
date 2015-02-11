@@ -1,13 +1,13 @@
-#ifndef AutoRight_H
-#define AutoRight_H
+#ifndef AutoRotateRight_H
+#define AutoRotateRight_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class AutoRight: public CommandBase
+class AutoRotateRight: public CommandBase
 {
 public:
-	AutoRight();
+	AutoRotateRight();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

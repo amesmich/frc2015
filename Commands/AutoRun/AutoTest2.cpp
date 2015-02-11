@@ -1,6 +1,6 @@
 #include "AutoTest2.h"
-#include "Commands/AutoCommands/AutoForward.h"
-#include "Commands/AutoCommands/AutoBackward.h"
+#include "../AutoCommands/AutoForward.h"
+#include "../AutoCommands/AutoBackward.h"
 
 AutoTest2::AutoTest2()
 {
@@ -21,6 +21,6 @@ AutoTest2::AutoTest2()
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	AddSequential (new AutoBackward(), 1);
-	AddSequential (new AutoForward(), 1);
+	AddSequential (new AutoBackward(), 3);
+	AddSequential (new AutoForward(), 3);
 }

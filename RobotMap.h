@@ -26,6 +26,9 @@ const int FRONT_RIGHT_MOTOR = 2;
 const int BACK_LEFT_MOTOR = 3;
 const int BACK_RIGHT_MOTOR = 4;
 
+//Lift constants
+const float LIFT_SPEED = 4;	    // Units are rotations per second
+
 
 //OI Constants
 const int DRIVER_CONTROLLER_PORT = 1;
@@ -45,7 +48,7 @@ const int LEFT_STICK_Y_AXIS = 1;    //Y-axis of Left Stick
 const int LEFT_STICK_BUTTON = 9;    //Button when pressing down Left Stick
 
 const int RIGHT_STICK_X_AXIS = 4;   //X-Axis of Right Stick
-const int LEFT_STICK_Y_AXIS = 5;    //Y-Axis of Right Stick
+const int RIGHT_STICK_Y_AXIS = 5;    //Y-Axis of Right Stick
 const int RIGHT_STICK_BUTTON = 10;  //Button when pressing down Right Stick
 
 const int BACK_BUTTON = 7;          //Back Button (in middle of controller)
@@ -57,9 +60,9 @@ const int START_BUTTON = 8;         //Start Button (in middle of controller)
 //ActiveGrabber Constants
 const int LEFT_GRABBER_MOTOR = 21;    //Left motor of ActiveGrabber
 const int RIGHT_GRABBER_MOTOR = 22;   //Right motor of ActiveGrabber
-const int MAX_SPEED_CONSTANT = 0.25;  //Multiplier constant for ActiveGrabber speed
-const int GRAB_SPEED = 0.20;          //TODO Find a good speed at which to grab the tote.
-const int STALL_SPEED = 0.05;
+
+// Ramping speed constant
+const int RAMP_RATE = 4;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:

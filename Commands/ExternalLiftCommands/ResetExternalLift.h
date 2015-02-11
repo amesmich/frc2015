@@ -1,13 +1,13 @@
-#ifndef AutoRight_H
-#define AutoRight_H
+#ifndef ResetExternalLift_H
+#define ResetExternalLift_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class AutoRight: public CommandBase
+class ResetExternalLift: public CommandBase
 {
 public:
-	AutoRight();
+	ResetExternalLift();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

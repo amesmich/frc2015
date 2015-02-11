@@ -1,13 +1,13 @@
-#ifndef AutoRight_H
-#define AutoRight_H
+#ifndef SwitchGrabberMode_H
+#define SwitchGrabberMode_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class AutoRight: public CommandBase
+class SwitchGrabberMode: public CommandBase
 {
 public:
-	AutoRight();
+	SwitchGrabberMode();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

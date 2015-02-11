@@ -1,13 +1,13 @@
-#ifndef AutoRight_H
-#define AutoRight_H
+#ifndef AutoBackwardDiagonalRight_H
+#define AutoBackwardDiagonalRight_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class AutoRight: public CommandBase
+class AutoBackwardDiagonalRight: public CommandBase
 {
 public:
-	AutoRight();
+	AutoBackwardDiagonalRight();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

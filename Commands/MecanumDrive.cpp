@@ -1,4 +1,4 @@
-#include "Commands/MecanumDrive.h"
+#include "MecanumDrive.h"
 #include "Subsystems/Drivetrain.h"
 
 MecanumDrive::MecanumDrive()
@@ -8,19 +8,15 @@ MecanumDrive::MecanumDrive()
 }
 
 // Called just before this Command runs the first time
-void MecanumDrive::Initialize()
-{
-
-}
+void MecanumDrive::Initialize(){}
 
 // Called repeatedly when this Command is scheduled to run
 void MecanumDrive::Execute()
 {
 	// Get joystick axis values to drive using mecanum drive controls
 	drivetrain->mecanum_drive(oi->joystick->GetRawAxis(0),	 // Left stick X-axis
-						                oi->joystick->GetRawAxis(1),	 // Left stick Y-axis
-						                oi->joystick->GetRawAxis(4));  // Right stick X-axis
-	Wait (0.005);
+						      oi->joystick->GetRawAxis(1),	 // Left stick Y-axis
+						      oi->joystick->GetRawAxis(4));  // Right stick X-axis
 }
 
 // Make this return true when this Command no longer needs to run execute()

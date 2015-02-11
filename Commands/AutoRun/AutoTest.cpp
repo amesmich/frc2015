@@ -1,6 +1,6 @@
 #include "AutoTest.h"
-#include "Commands/AutoCommands/AutoForward.h"
-#include "Commands/AutoCommands/AutoBackward.h"
+#include "../AutoCommands/AutoForward.h"
+#include "../AutoCommands/AutoBackward.h"
 
 AutoTest::AutoTest()
 {
@@ -23,5 +23,4 @@ AutoTest::AutoTest()
 
 	AddSequential (new AutoForward(), 3);
 	AddSequential (new AutoBackward(), 3);
-
 }

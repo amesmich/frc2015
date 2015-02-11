@@ -2,7 +2,6 @@
 #define OI_H
 
 #include "WPILib.h"
-#include "RobotMap.h"
 
 class OI
 {
@@ -11,9 +10,14 @@ private:
 public:
 	OI();
 
-	Joystick *joystick;		// The controller for the robot
-	JoystickButton *a_button;	// The 'A' button on the controller
-	JoystickButton *y_button; // The 'Y' button on the controller
+	Joystick *joystick;				// The controller for the robot
+
+	JoystickButton *a_button;		// The 'A' button on the controller
+
+	JoystickButton *b_button;	// 'b' on the controller
+	JoystickButton *x_button;	// 'x' on the controller
+
+	JoystickButton *y_button;  // y button on the controller
 };
 
 #endif

@@ -1,13 +1,13 @@
-#ifndef AutoRight_H
-#define AutoRight_H
+#ifndef ManualInternalLift_H
+#define ManualInternalLift_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class AutoRight: public CommandBase
+class ManualInternalLift: public CommandBase
 {
 public:
-	AutoRight();
+	ManualInternalLift();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
